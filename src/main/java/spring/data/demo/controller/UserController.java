@@ -20,7 +20,6 @@ public class UserController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public HttpStatus addUser(@RequestBody User user) {
-        System.out.println(user);
         return userService.addUser(user) != null ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
     }
 
