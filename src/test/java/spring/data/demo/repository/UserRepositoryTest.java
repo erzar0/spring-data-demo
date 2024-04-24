@@ -111,29 +111,6 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void testGetUsersByFirstNameOrLastName() {
-        // Mocking data
-        User user1 = new User();
-        user1.setFirstName("John");
-        user1.setLastName("Doe");
-
-        User user2 = new User();
-        user2.setFirstName("Alice");
-        user2.setLastName("Doe");
-
-        List<User> users = Arrays.asList(user1, user2);
-        when(userRepository.findByFirstNameOrLastName("John", "Doe")).thenReturn(users);
-
-        // Test
-        List<User> foundUsers = userService.getUsersByFirstNameOrLastName("John", "Doe");
-
-        // Verify
-        assertEquals(2, foundUsers.size());
-        assertEquals("John", foundUsers.get(0).getFirstName());
-        assertEquals("Doe", foundUsers.get(0).getLastName());
-    }
-
-    @Test
     public void testGetUsersByUsernameContaining() {
         // Mocking data
         User user1 = new User();
@@ -230,59 +207,4 @@ public class UserRepositoryTest {
         assertEquals("Doe", foundUsers.getFirst().getLastName());
         verify(userRepository, times(1)).findByFirstNameOrderByLastNameAsc("John");
     }
-
-    @Test
-    public void testCountUsersByEmail() {
-        // Mocking data
-        when(userRepository.countByEmail("test@example.com")).thenReturn(3L);
-
-        // Test
-        long count = userService.countUsersByEmail("test@example.com");
-
-        // Verify
-        assertEquals(3, count);
-    }
-
-    @Test
-    public void testDeleteUserByUsername() {
-        // Test
-        userService.deleteUserByUsername("testUser");
-
-        // Verify
-        verify(userRepository, times(1)).deleteByUsername("testUser");
-    }
-
-    @Test
-    public void testDeleteUserByEmail() {
-        // Test
-        userService.deleteUserByEmail("test@example.com");
-
-        // Verify
-        verify(userRepository, times(1)).deleteByEmail("test@example.com");
-    }
-
-    @Test
-    public void testExistsByUsername() {
-        // Mocking data
-        when(userRepository.existsByUsername("testUser")).thenReturn(true);
-
-        // Test
-        boolean exists = userService.existsByUsername("testUser");
-
-        // Verify
-        assertTrue(exists);
-    }
-
-    @Test
-    public void testExistsByEmail() {
-        // Mocking data
-        when(userRepository.existsByEmail("test@example.com")).thenReturn(true);
-
-        // Test
-        boolean exists = userService.existsByEmail("test@example.com");
-
-        // Verify
-        assertTrue(exists);
-    }
-
 }

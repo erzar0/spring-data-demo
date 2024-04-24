@@ -1,5 +1,6 @@
 package spring.data.demo.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import spring.data.demo.entity.User;
@@ -8,10 +9,15 @@ import spring.data.demo.repository.UserRepository;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    public User addUser(User newUser) {
+        return userRepository.save(newUser);
+    }
 
     public User getUserByUsername(String username) {
         return userRepository.findByUsername(username);
@@ -23,10 +29,6 @@ public class UserService {
 
     public List<User> getUsersByFirstNameAndLastName(String firstName, String lastName) {
         return userRepository.findByFirstNameAndLastName(firstName, lastName);
-    }
-
-    public List<User> getUsersByFirstNameOrLastName(String firstName, String lastName) {
-        return userRepository.findByFirstNameOrLastName(firstName, lastName);
     }
 
     public List<User> getUsersByUsernameContaining(String keyword) {

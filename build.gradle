@@ -16,19 +16,22 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.hibernate.validator:hibernate-validator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.2.5'
+	implementation 'org.springframework.boot:spring-boot-starter-web:3.2.5'
+	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
 
-	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'org.hsqldb:hsqldb:2.7.2'
 
-	annotationProcessor 'org.projectlombok:lombok'
-	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok:1.18.32'
 
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compileOnly 'org.projectlombok:lombok:1.18.32'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.2.5'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api'
 
-	testAnnotationProcessor 'org.projectlombok:lombok'
-	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.32'
+
+	testCompileOnly 'org.projectlombok:lombok:1.18.32'
 }
 
 tasks.named('test') {

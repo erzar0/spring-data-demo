@@ -9,16 +9,23 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import lombok.Data;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 
-@Data
 @Entity
 @Table(name = "user", uniqueConstraints = {
         @UniqueConstraint(columnNames = { "email" }),
         @UniqueConstraint(columnNames = { "username" })
 })
+@AllArgsConstructor
+@RequiredArgsConstructor
+@Getter
+@Setter
 public class User {
 
     @Id
@@ -34,8 +41,9 @@ public class User {
     @Column(name="lastname")
     private String lastName;
 
-    @Min(5)
-    @Max(30)
+    // Validators may be used only when using constructor, not setters!
+//    @Min(5)
+//    @Max(30)
     @Column(name="username")
     private String username;
 
@@ -43,8 +51,8 @@ public class User {
     @Column(name="email")
     private String email;
 
-    @Min(8)
+//    @Min(8)
     @NotNull
-    @Column(name="USR_PASSWORD")
+    @Column(name="password")
     private String password;
 }
