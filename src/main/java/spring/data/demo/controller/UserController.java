@@ -90,4 +90,11 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
+}
+
+
 }
